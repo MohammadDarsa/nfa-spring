@@ -21,8 +21,14 @@ jobs:
         with:
           java-version: '8'
 
-      - name: Build with Maven
-        run: mvn clean install
+#       - name: Build with Maven
+#         run: mvn clean install
+        
+      - name: Build with gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: release-candidate
+      - run: gradle build --dry-run # just test build configuration
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
